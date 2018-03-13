@@ -1,2 +1,2 @@
 # js-training
-JS Training Course
+JS Training Course 2018
