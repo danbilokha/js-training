@@ -1,0 +1,2 @@
+# js-training
+Efficient programmer

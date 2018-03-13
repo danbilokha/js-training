@@ -1,0 +1,2 @@
+# js-training
+Functional programming

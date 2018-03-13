@@ -1,0 +1,2 @@
+# js-training
+Reactive programming
