@@ -1,0 +1,21 @@
+{
+  "name": "js_mentoring_2018_mentee",
+  "version": "1.0.0",
+  "description": "JS Training Course 2018",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbilokha/js-training.git"
+  },
+  "author": "Danylo Bilokha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danbilokha/js-training/issues"
+  },
+  "homepage": "https://github.com/danbilokha/js-training#readme",
+  "devDependencies": {
+    "jasmine": "^3.1.0"
+  }
+}
