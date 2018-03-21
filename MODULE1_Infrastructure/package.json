@@ -6,7 +6,8 @@
   "scripts": {
     "build": "webpack",
     "eslint": "eslint src",
-    "test": "jasmine"
+    "plato": "plato -r -d report src",
+    "test": "npm run plato"
   },
   "repository": {
     "type": "git",
