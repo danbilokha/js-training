@@ -1,8 +1,10 @@
-import {hello} from './app/app.js';
 
-function checkCreatorName(name) {
-    console.log(hello());
+function showName(name = 'what name?') {
     return name;
 }
 
-checkCreatorName();
+function showCreatorName(name = "Danylo Bilokha") {
+    document.getElementsByClassName('creatorName')[0].innerHTML  = showName(name);
+}
+
+showCreatorName();
