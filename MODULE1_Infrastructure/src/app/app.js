@@ -1,5 +1,5 @@
-function hello() {
+const hello = () => {
     return "Hi!"
 };
 
-export.hello = hello;
+export {hello};

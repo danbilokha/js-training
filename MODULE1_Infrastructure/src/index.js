@@ -1,8 +1,8 @@
-let hello = require('app/app.js').hello;
+import {hello} from './app/app.js';
 
-function checkCreatorName() {
+function checkCreatorName(name) {
     console.log(hello());
-    return 'ads';
+    return name;
 }
 
-exports.checkCreatorName = checkCreatorName;
+checkCreatorName();

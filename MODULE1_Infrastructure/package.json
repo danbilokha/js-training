@@ -2,7 +2,9 @@
   "name": "js_mentoring_2018_mentee",
   "version": "1.0.0",
   "description": "JS Training Course 2018",
+  "private": true,
   "scripts": {
+    "build": "webpack",
     "test": "jasmine"
   },
   "repository": {
@@ -16,6 +18,8 @@
   },
   "homepage": "https://github.com/danbilokha/js-training#readme",
   "devDependencies": {
-    "jasmine": "^3.1.0"
+    "jasmine": "^3.1.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
   }
 }
