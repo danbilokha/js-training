@@ -1,0 +1,10 @@
+{
+  "name": "module2_webpack_advanced",
+  "version": "1.0.0",
+  "description": "Webpack Advanced",
+  "main": "./src/index.ts",
+  "scripts": {
+  },
+  "author": "Danylo Bilokha",
+  "license": "MIT"
+}
