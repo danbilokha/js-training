@@ -1,0 +1,17 @@
+# before_script:
+  # -
+  # - 
+
+preconditions: 
+  script:
+    - npm cache clean --force
+    - rm -rf node_modules/
+    - npm i
+
+test:
+  script:
+    - npm run test
+
+build:
+  script:
+    - npm run build

@@ -1,0 +1,28 @@
+{
+  "name": "js_mentoring_2018_mentee",
+  "version": "1.0.0",
+  "description": "JS Training Course 2018",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "eslint": "eslint src",
+    "plato": "plato -r -d report src",
+    "test": "npm run plato"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbilokha/js-training.git"
+  },
+  "author": "Danylo Bilokha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danbilokha/js-training/issues"
+  },
+  "homepage": "https://github.com/danbilokha/js-training#readme",
+  "devDependencies": {
+    "eslint": "^4.19.0",
+    "jasmine": "^3.1.0",
+    "webpack": "^4.1.1",
+    "webpack-cli": "^2.0.12"
+  }
+}
