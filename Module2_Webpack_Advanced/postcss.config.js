@@ -1,8 +1,8 @@
 module.exports = {
-  //parser: 'sugarss',
+  //parser: 'sugarss', // parser
   plugins: {
     'postcss-import': {},
     'postcss-cssnext': {},
-    'cssnano': {}
+    //'cssnano': {} Minimize css by def
   }
 }

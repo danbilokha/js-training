@@ -1,3 +1,5 @@
 import "./app.scss";
 
-console.log("app");
+function blankFunction() {
+    
+}
