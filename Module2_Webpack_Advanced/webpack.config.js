@@ -30,14 +30,14 @@ module.exports = (env) => {
                     test: /\.css$/,
                     use: ExtractTextPlugin.extract({
                         fallback: "style-loader",
-                        use: "css-loader"
+                        use: ["css-loader", "postcss-loader"]
                     }),
                     exclude: /node_module/
                 },
                 {
                     test: /\.scss$/,
                     use: ExtractTextPlugin.extract({
-                        use: ["css-loader", "sass-loader"]
+                        use: ["css-loader", "postcss-loader", "sass-loader"]
                     }),
                     exclude: /node_module/
                 },
