@@ -27,21 +27,6 @@ module.exports = () => {
                     options: require('../../../tslint.json')
                 },
                 {
-                    test: /\.css$/,
-                    use: ExtractTextPlugin.extract({
-                        fallback: "style-loader",
-                        use: ["css-loader", "postcss-loader"]
-                    }),
-                    exclude: /node_module/
-                },
-                {
-                    test: /\.scss$/,
-                    use: ExtractTextPlugin.extract({
-                        use: ["css-loader", "postcss-loader", "sass-loader"]
-                    }),
-                    exclude: /node_module/
-                },
-                {
                     test: /\.ts$/,
                     use: {
                         loader: 'ts-loader',

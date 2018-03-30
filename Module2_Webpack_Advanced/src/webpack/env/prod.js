@@ -1,4 +1,5 @@
 const webpackMerge = require('webpack-merge');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const webpackBaseConfigFn = require('./config.js');
@@ -7,40 +8,50 @@ module.exports = () => {
 
     let baseConfig = webpackBaseConfigFn();
 
-    // Minimize CSS
-    baseConfig.module.rules = changeLoaderOption(
-        baseConfig,
-        'css',
-        'css-loader',
-        {minimize: true}
-    );
-
-    // Remove source map
-    // baseConfig.module.rules = changeLoaderOption(
-    //     baseConfig,
-    //     'ts',
-    //     'css-loader',
-    //     {minimize: true}
-    // );
-
     return webpackMerge(baseConfig, {
         cache: false,
-        devtool: false
+        devtool: false,
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: ExtractTextPlugin.extract({
+                        fallback: "style-loader",
+                        use: [
+                                {
+                                    loader: "css-loader",
+                                    options: {
+                                        minimize: true
+                                    }
+                                },
+                                {
+                                    loader: "postcss-loader"
+                                }
+                            ]
+                    }),
+                    exclude: /node_module/
+                },
+                {
+                    test: /\.scss$/,
+                    use: ExtractTextPlugin.extract({
+                        use: [
+                                {
+                                    loader: "css-loader",
+                                    options: {
+                                        minimize: true
+                                    }
+                                },
+                                {
+                                    loader: "postcss-loader"
+                                },
+                                {
+                                    loader: "sass-loader"
+                                }
+                            ]
+                    }),
+                    exclude: /node_module/
+                }
+            ]
+        }, 
     });
 };
-
-// Not sure make function pure or unpure
-const changeLoaderOption = (config, containingWord, loader, newOption) => {
-    let _rules = [];
-    _rules = config.module.rules;
-    _rules.forEach(rule => {
-        if(rule.test.toString().indexOf(containingWord) > -1) {
-            rule.use.forEach(loaderDef => {
-                if(loaderDef.loader === loader) {
-                    loaderDef.options = newOption;
-                }
-            });
-        }
-    });
-    return _rules;
-}
