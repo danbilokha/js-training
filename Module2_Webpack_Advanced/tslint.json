@@ -1,0 +1,12 @@
+{
+    "configuration": {
+        "rules": {
+            "quotemark": [true, "double"]
+        }
+    },
+    "emitErrors": false,
+    "failOnHint": true,
+    "typeCheck": true,
+    "fix": true,
+    "tsConfigFile": "./tsconfig.json"
+}

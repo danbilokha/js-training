@@ -1,0 +1,39 @@
+{
+  "name": "module2_webpack_advanced",
+  "version": "1.0.0",
+  "description": "Webpack Advanced",
+  "main": "./src/index.ts",
+  "scripts": {
+    "live": "webpack-dev-server",
+    "development": "webpack",
+    "production": "webpack --env production"
+  },
+  "author": "Danylo Bilokha",
+  "license": "MIT",
+  "devDependencies": {
+    "clean-webpack-plugin": "^0.1.19",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "grunt": "^1.0.2",
+    "gulp": "^3.9.1",
+    "html-webpack-plugin": "^3.1.0",
+    "node-sass": "^4.8.3",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-import": "^11.1.0",
+    "postcss-loader": "^2.1.3",
+    "sass-loader": "^6.0.7",
+    "standard": "^11.0.1",
+    "standard-loader": "^6.0.1",
+    "style-loader": "^0.20.3",
+    "sugarss": "^1.0.1",
+    "ts-loader": "^4.1.0",
+    "tslint": "^5.9.1",
+    "tslint-loader": "^3.6.0",
+    "typescript": "^2.7.2",
+    "uglifyjs-webpack-plugin": "^1.2.4",
+    "webpack": "^4.2.0",
+    "webpack-cli": "^2.0.13",
+    "webpack-dev-server": "^3.1.1",
+    "webpack-merge": "^4.1.2"
+  }
+}
