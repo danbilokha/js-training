@@ -1,13 +1,17 @@
 import R from 'ramda';
 
 function doRamda(tasksArr) {
-    return R.reduce(
-        (acc, task) => {
-            return acc.set(task.name, acc.has(task.name) ? addTasksDuration(acc.get(task.name), task) : task)
-        },
-        new Map(),
-        R.filter(getWorkAndPrivateTasks, tasksArr)
-    );
+    return [
+        ...R.reduce(
+            (acc, task) => {
+                return acc.set(task.name, acc.has(task.name) ? addTasksDuration(acc.get(task.name), task) : task)
+            },
+            new Map(),
+            R.filter(getWorkAndPrivateTasks, tasksArr)
+        ).values()
+    ].map(({name, duration}) => {
+            return `Total duration of '${name}' is ${duration}`;
+    });
 };
 
 function getWorkAndPrivateTasks({type}) {

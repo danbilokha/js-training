@@ -1,9 +1,11 @@
 function getPrivateAndWorkTasks(tasksArr) {
-    return concatSameTasks(
-            tasksArr
-            .filter(({type}) => type === "work" || type === "private")
-        )
-        .values(({name, duration}) => `Total duration of '${name}' is ${duration}`);
+    return [
+            ...concatSameTasks(tasksArr.filter(({type}) => type === "work" || type === "private"))
+            .values()
+        ]
+        .map(({name, duration}) => {
+            return `Total duration of '${name}' is ${duration}`;
+        });
 };
 
 function concatSameTasks(tasks) {
