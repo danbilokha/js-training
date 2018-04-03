@@ -10,18 +10,21 @@ const tasks = [
 ]; 
 
 function getPrivateAndWorkTasks(tasksArr) {
-    return calculateSameTaskDuration(
+    return concatSameTasks(
             tasksArr
             .filter(({type}) => type === "work" || type === "private")
-        ).map(({name, duration}) => `Total duration of '${name}' is ${duration}`);
+        )
+        .values(({name, duration}) => `Total duration of '${name}' is ${duration}`);
 };
 
-function calculateSameTaskDuration(tasks) {
+function concatSameTasks(tasks) {
     return tasks.reduce((newArr, task) => {
-        console.log("ARR: ", newArr);
-        console.log("TASK: ", task);
-        return newArr.concat([task]);
-    }, []);
+        return newArr.set(task.name, newArr.has(task.name) ? addTasksDuration(newArr.get(task.name), task) : task);
+    }, new Map());
+}
+
+function addTasksDuration(t1, t2) {
+    return Object.assign({}, t1, {duration: t1.duration + t2.duration});
 }
 
 console.log(getPrivateAndWorkTasks(tasks));
