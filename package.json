@@ -1,0 +1,27 @@
+{
+  "name": "js_mentoring_2018_mentee",
+  "version": "1.0.0",
+  "description": "JS Training Course 2018",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/danbilokha/js-training.git"
+  },
+  "author": "Danylo Bilokha",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/danbilokha/js-training/issues"
+  },
+  "homepage": "https://github.com/danbilokha/js-training#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "webpack": "^4.5.0",
+    "webpack-cli": "^2.0.14"
+  },
+  "dependencies": {
+    "run-node": "^0.2.0"
+  }
+}
