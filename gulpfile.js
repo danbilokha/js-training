@@ -2,18 +2,20 @@ const gulp = require('gulp');
 const minimist = require('minimist');
 const {exec, spawn} = require('child_process');
 const run = require('gulp-run');
-const colors = require('ansi-colors');
 const webpack = require('webpack');
 const webpackDevServer = require('webpack-dev-server');
+const fs = require('fs');
 
+const gulpCalculations = require('./gulpfile.calculations.js');
+const gulpDictionary = require('./gulpfile.dictionary.js');
 const webpackBaseConfig = require('./webpack.config.js');
 
+const {resolveFile, isFileExist, printConsole} = gulpCalculations;
+const {ConsoleMessageType} = gulpDictionary; 
 const args = minimist(process.argv.slice(2));
 const {path, file} = args;
 
 gulp.task('run-file', (cb) => {
-    isFileExist(file);
-    isFileExist(`${path}/${file}`);
     exec(`node ${path}/${file}`, (err, stdout, stderr) => {
         console.log(stdout);
         console.log(stderr);
@@ -22,20 +24,14 @@ gulp.task('run-file', (cb) => {
 });
 
 gulp.task('run-life', () => {
-    console.log(colors.bold(colors.yellow('Start run-life task')));
+    const pathToFile = resolveFile(file, path);
+    const output = {
+        name: 'bundle.js',
+        dist: 'dist'
+    };
+    const config = webpackBaseConfig(`./${pathToFile}`, output);
 
-    const config = webpackBaseConfig()
-    let server = new webpackDevServer(webpack(webpackBaseConfig));
-    console.log(colors.yellow('Start webpack dev server on 7070 port'));
+    let server = new webpackDevServer(webpack(config));
+    printConsole(ConsoleMessageType.info, 'Start webpack dev server on 7070 port');
     server.listen(7070);
 });
-
-const resolveFile = (file, path) => {
-    console.log(file, path);
-    return '';
-}
-
-const isFileExist = (file) => {
-    console.log(fs, fs.access(file));
-    return fs.access(file);
-}
