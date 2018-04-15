@@ -1,7 +1,5 @@
 const path = require('path');
 
-console.log(__dirname);
-
 module.exports = (entry, output) => {
     console.log(entry, output);
     return {
@@ -12,4 +10,3 @@ module.exports = (entry, output) => {
         }
     }
 };
-    
