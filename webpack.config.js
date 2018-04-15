@@ -1,7 +1,6 @@
 const path = require('path');
 
 module.exports = (entry, output) => {
-    console.log(entry, output);
     return {
         entry: entry,
         output: {

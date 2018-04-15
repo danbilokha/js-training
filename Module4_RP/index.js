@@ -1,6 +1,3 @@
-const Observable = require('./Observable.js');
-const ofRandomSymbol = require('./ofRandSymbol.js');
+const ofRandomSymbols = require('./ofRandomSymbols.js');
 
-new ofRandomSymbol();
-
-console.log("ASD")
+ofRandomSymbols().subscribe();
