@@ -28,13 +28,13 @@ class Observable {
     }
 
     unsubscribe() {
-        this.unsubscribed = true;
-    }
+        console.info(`You successfully unsubcribed from stream`);
 
-    // subscribe() {
-    //     this._destination();
-    //     return this.unsubscribe.bind(this);
-    // }
+        this.unsubscribed = true;
+        if(this.destroy) {
+            return this.destroy();
+        }
+    }
 }
 
 module.exports = Observable;
