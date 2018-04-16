@@ -1,7 +1,7 @@
-const ofRandomSymbols = require('./ofRandomSymbols.js');
+const OfRandmSymbols = require('./ofRandomSymbols.js');
 
-ofRandomSymbols().subscribe({
-    next(v) { console.log('Next', v) },
-    error(e) { console.log(`Error. Message ${e}`) },
-    compete() { console.log('Compete') }
-});
+// (new OfRandmSymbols).subscribe({
+//     next(v) { console.log('Next', v) },
+//     error(e) { console.log(`Error. Message ${e}`) },
+//     compete() { console.log('Compete') }
+// });

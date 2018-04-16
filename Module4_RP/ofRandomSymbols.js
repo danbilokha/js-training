@@ -4,7 +4,7 @@ const _possibleValues = 'ABCDEFGHIKLMNOPQRSTVXYZ';
 
 class RandSymbol {
 
-    static get _possibleValues() { 
+    static get _possibleValues() {
         return _possibleValues;
     };
 
@@ -14,10 +14,16 @@ class RandSymbol {
 
     constructor() {
         this._source = setInterval(this.emit.bind(this), 1000);
+        this._emitedTimes = 0;
     }
 
     emit() {
-        this.onData(this._getRandomSymbol());
+      if(this._emitedTimes >= 5) {
+        return this.complete();
+      }
+
+      this.onData(this._getRandomSymbol());
+      this._emitedTimes += 1;
     }
 
     complete() {
@@ -46,33 +52,25 @@ class RandSymbol {
     }
 }
 
-const ofRandomSymbols = () => {
-    return {
-        subscribe: (observer) => new Observable((observer) => { // Need to be changed smth here
-            const randSymbol = new RandSymbol();
+class OfRandmSymbols {
+  subscribe(observer) {
+    const randomSymbol = new RandSymbol();
+    const observable = new Observable(observer);
 
-            console.log('bef', observer)
-            
-            randSymbol.onData = (data) => {
-                console.log('here', data, observer);
-                return observer.next(data);
-            }
-            randSymbol.onError = (err) => observer.error(data);
-            randSymbol.onComplete = () => observer.complete();
+    randomSymbol.onData = (data) => observable.next(data);
+    randomSymbol.onComplete = () => observable.complete();
 
-            return () => randSymbol.complete();
-        }).subscribe()
-    }
+    return () => observable.unsubscribe();
+  }
 }
 
-function ss(observer) { // Need to be changed smth here
-    const randSymbol = new RandSymbol();
-    
-    randSymbol.onData = (data) => observer.next(data);
-    randSymbol.onError = (err) => observer.error(data);
-    randSymbol.onComplete = () => observer.complete();
 
-    return () => randSymbol.complete();
-}
+const obs = (new OfRandmSymbols).subscribe(
+  v => console.log(v),
+  err => console.log('ERROR', err),
+  () => console.log('COMPLETE')
+);
 
-module.exports = ofRandomSymbols;
+setTimeout(obs, 3000);
+
+module.exports = OfRandmSymbols;

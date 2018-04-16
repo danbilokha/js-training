@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/danbilokha/js-training.git"
   },
+  "scripts": {
+    "webpack": "webpack-dev-server --watch"
+  },
   "author": "Danylo Bilokha",
   "license": "MIT",
   "bugs": {

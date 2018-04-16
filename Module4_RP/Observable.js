@@ -5,9 +5,9 @@ class Observable {
     }
 
     next(value) {
-        if(!this.unsubscribed && !this._error && !this._compelete && this._destination.next) {
+        if(!this.unsubscribed && !this._error && !this._compelete) {
             try {
-                this._destination.next(value);
+                this._destination(value);
             } catch(err) {
                 this.error(err);
             }
@@ -23,7 +23,7 @@ class Observable {
 
     complete() {
         console.info(`Stream has been competed. Unsubscribe`);
-        this._destination.complete();
+        //this._destination.complete();
         this.unsubscribe();
     }
 
@@ -31,10 +31,10 @@ class Observable {
         this.unsubscribed = true;
     }
 
-    subscribe() {
-        this._destination();
-        return this.unsubscribe.bind(this);
-    }
+    // subscribe() {
+    //     this._destination();
+    //     return this.unsubscribe.bind(this);
+    // }
 }
 
 module.exports = Observable;

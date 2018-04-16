@@ -1,11 +1,10 @@
 const path = require('path');
 
-module.exports = (entry, output) => {
-    return {
-        entry: entry,
-        output: {
-            filename: output.name,
-            path: path.resolve(__dirname, output.dist)
-        }
-    }
+module.exports = {
+  entry: './Module4_RP/index.js',
+  output: {
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'dist')
+  },
+  devtool: 'source-map'
 };
