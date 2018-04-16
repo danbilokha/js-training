@@ -1,7 +1,6 @@
 class Observable {
 
     constructor(destination) {
-        console.log('hrere Observ', destination);
         this._destination = destination;
     }
 
@@ -33,6 +32,7 @@ class Observable {
     }
 
     subscribe() {
+        this._destination();
         return this.unsubscribe.bind(this);
     }
 }

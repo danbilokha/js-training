@@ -13,12 +13,10 @@ class RandSymbol {
     }
 
     constructor() {
-        console.log('asd');
         this._source = setInterval(this.emit.bind(this), 1000);
     }
 
     emit() {
-        console.log(this._getRandomSymbol());
         this.onData(this._getRandomSymbol());
     }
 
@@ -52,14 +50,29 @@ const ofRandomSymbols = () => {
     return {
         subscribe: (observer) => new Observable((observer) => { // Need to be changed smth here
             const randSymbol = new RandSymbol();
+
+            console.log('bef', observer)
             
-            randSymbol.onData = (data) => observer.next(data);
+            randSymbol.onData = (data) => {
+                console.log('here', data, observer);
+                return observer.next(data);
+            }
             randSymbol.onError = (err) => observer.error(data);
             randSymbol.onComplete = () => observer.complete();
 
             return () => randSymbol.complete();
-        })
+        }).subscribe()
     }
+}
+
+function ss(observer) { // Need to be changed smth here
+    const randSymbol = new RandSymbol();
+    
+    randSymbol.onData = (data) => observer.next(data);
+    randSymbol.onError = (err) => observer.error(data);
+    randSymbol.onComplete = () => observer.complete();
+
+    return () => randSymbol.complete();
 }
 
 module.exports = ofRandomSymbols;

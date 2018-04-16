@@ -23,7 +23,7 @@ gulp.task('run-file', (cb) => {
     });
 });
 
-gulp.task('run-life', () => {
+gulp.task('run-live', () => {
     const pathToFile = resolveFile(file, path);
     const output = {
         name: 'bundle.js',
