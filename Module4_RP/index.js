@@ -18,7 +18,6 @@ const observable = (
     })
 );
 
-console.log(observable);
 // observable.subscribe(
 //     v => console.log(v),
 //     err => console.log('ERROR', err),
@@ -37,10 +36,13 @@ console.log(observable);
 const myFilter = require('./operators/myFilter.js');
 
 observable
-    .myFilter('asdasd')
-    .subscribe(v => console.log(v),
-    err => console.log('ERROR', err),
-    () => console.log('COMPLETE'));
-    /*
+    .myFilter('ABCDEFGHIKLMNOPQRSTVXYZ')
+    .subscribe({
+        next: v => console.log(v),
+        error: err => console.log('ERROR', err),
+        compete: () => console.log('COMPLETE')
+    });
+
+/*
     To here. End of 3 task
 */

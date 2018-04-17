@@ -7,7 +7,7 @@ class Observable {
     next(value) {
         if(!this.unsubscribed && !this._error && !this._compelete) {
             try {
-                this._destination(value);
+                chooseResponseStrategy(value, 'next', this);
             } catch(err) {
                 this.error(err);
             }
@@ -15,8 +15,8 @@ class Observable {
     }
 
     error(err) {
-        console.error(`Error has been occured. Unsubscribe`);
-        this._destination.error(err);
+        console.error(`Error has been occured: ${err}. Unsubscribe`);
+        chooseResponseStrategy(err, 'error', this);
         // Silent unsubscribe
         this.unsubscribe();
     }
@@ -35,6 +35,14 @@ class Observable {
             return this.destroy();
         }
     }
+}
+
+const chooseResponseStrategy = (value, action, context) => {
+    if(context._destination[action]) {
+        return context._destination[action](value);
+    }
+
+    context._destination(value);
 }
 
 module.exports = Observable;
