@@ -33,10 +33,28 @@ const observable = (
 /*
     To see 3 uncomment 2 task and from here
 */
+//const myFilter = require('./operators/myFilter.js');
+
+// observable
+//     .myFilter('ABCDEFGHIKLMNOPQRSTVXYZ')
+//     .subscribe({
+//         next: v => console.log(v),
+//         error: err => console.log('ERROR', err),
+//         compete: () => console.log('COMPLETE')
+//     });
+
+/*
+    To here. End of 3 task
+*/
+
+/*
+    To see 4 from here
+*/
 const myFilter = require('./operators/myFilter.js');
+const switchCase = require('./operators/switchCase.js');
 
 observable
-    .myFilter('ABCDEFGHIKLMNOPQRSTVXYZ')
+    .switchCase()
     .subscribe({
         next: v => console.log(v),
         error: err => console.log('ERROR', err),
@@ -44,5 +62,5 @@ observable
     });
 
 /*
-    To here. End of 3 task
+    To here. End of 4 task
 */

@@ -1,5 +1,5 @@
 const Observable = require('./../Observable.js');
-const {OfRandmSymbols} = require('./../randomSymbol.js');
+const {OfRandmSymbols, takeSymbolKey} = require('./../randomSymbol.js');
 
 // Bad aproach. Imagine, that consumer, that use library with a prototype inheritance, assume, that myFilter is in library
 // and he shouldn't import it. And you, in your library, come to conclusion, that you need to delete myFilter from your imports. And 
@@ -19,6 +19,3 @@ OfRandmSymbols.prototype.myFilter = function(expression) {
         })
     })()
 };
-
-// Could be improved
-const takeSymbolKey = (symbol) => symbol[symbol.indexOf('(') + 1];

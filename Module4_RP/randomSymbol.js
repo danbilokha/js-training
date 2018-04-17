@@ -68,7 +68,11 @@ class OfRandmSymbols {
     }
 }
 
+// Could be improved
+const takeSymbolKey = (symbol) => symbol[symbol.indexOf('(') + 1];
+
 module.exports = {
     OfRandmSymbols,
-    RandSymbolDataSource
+    RandSymbolDataSource,
+    takeSymbolKey
 };
