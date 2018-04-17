@@ -48,18 +48,18 @@ const observable = (
 */
 
 /*
-    To see 4 from here
+    To see 4 uncomment 2 and from here
 */
-const myFilter = require('./operators/myFilter.js');
-const switchCase = require('./operators/switchCase.js');
+// const myFilter = require('./operators/myFilter.js');
+// const switchCase = require('./operators/switchCase.js');
 
-observable
-    .switchCase()
-    .subscribe({
-        next: v => console.log(v),
-        error: err => console.log('ERROR', err),
-        compete: () => console.log('COMPLETE')
-    });
+// observable
+//     .switchCase()
+//     .subscribe({
+//         next: v => console.log(v),
+//         error: err => console.log('ERROR', err),
+//         compete: () => console.log('COMPLETE')
+//     });
 
 /*
     To here. End of 4 task
