@@ -64,3 +64,44 @@ const observable = (
 /*
     To here. End of 4 task
 */
+
+/*
+    To here. End of 3 task
+*/
+
+/*
+    To see 5 from here
+*/
+const Subject = require('./Subject.js');
+
+const subject = new Subject();
+subject.subscribe(v => console.log('Sub1', v));
+
+subject.next(123);
+
+const SkipSubject = require('./SkipSubject.js');
+
+const skipSubject = new SkipSubject(2);
+skipSubject.subscribe(v => console.log('SkipSub1', v));
+
+skipSubject.next(1);
+
+skipSubject.next(2);
+
+skipSubject.next(3);
+
+skipSubject.next(4);
+
+skipSubject.subscribe(v => console.log('SkipSub2', v));
+
+skipSubject.next(5);
+
+skipSubject.next(6);
+
+skipSubject.next(7);
+
+skipSubject.next(8);
+
+/*
+    To here. End of 5 task
+*/
