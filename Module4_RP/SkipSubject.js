@@ -20,10 +20,14 @@ class SkipSubject extends Subject {
     }
 
     subscribe(observer) {
+        const subject = new Subject();
+
         this._subscriptions.push({
-            observer: super.subscribe(observer),
+            observer: subject,
             valuesSkipped: 0
         });
+
+        return subject.subscribe(observer).bind(subject);
     }
 }
 
