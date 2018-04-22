@@ -6,9 +6,13 @@
       v-model="newTodoVal"
       v-on:keyup.enter='newTodo(newTodoVal)'
       placeholder='Add new todo'>
+    <input
+      v-model='filteredVal'
+      placeholder='Enter filtered value'
+    >
     <ul>
       <li
-          v-for='item in items' :key='item.id'
+          v-for='item in filter(items)' :key='item.id'
           class='todo' v-bind:class='item.done ? "done" : "inprogress"'
           v-on:click="todoItemClick(item)"
         >
@@ -38,6 +42,7 @@
         items: this.$store.state.todos,
         newTodoVal: '',
         itemsLastKey: this.$store.state.todos.length,
+        filteredVal: '',
       };
     },
     methods: {
@@ -67,7 +72,19 @@
           this.newTodoVal = '';
         }
       },
+      filter(items) { // Maybe move to calc?
+        if (this.filteredVal === '') {
+          return items;
+        }
+
+        return this.items.filter(item => {
+          return item.description.indexOf(this.filteredVal) !== -1;
+        });
+      },
     },
+    // calculate: {
+      
+    // },
   };
 </script>
 
