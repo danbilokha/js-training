@@ -1,7 +1,13 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+  <div class="body-content">
+    <div class='header'>
+      <img src='./assets/logo.png'>
+    </div>
+    <div class='content'>
+      <router-view/>
+    </div>
+    <div class='footer'>
+    </div>
   </div>
 </template>
 
@@ -12,12 +18,12 @@ export default {
 </script>
 
 <style scoped>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  .header {
+    text-align: center;
+  }
+  .content {
+    margin: 0 20%;
+  }
+  .footer {
+  }
 </style>

@@ -13,6 +13,10 @@
           v-on:click="todoItemClick(item)"
         >
         <button
+          v-on:click.stop='edit(item)'
+          class='edit'
+        > Edit </button>
+        <button
           v-on:click.stop='remove(item)'
           class='remove'
         > - </button>
@@ -31,38 +35,35 @@
     data() {
       return {
         msg: 'Welcome to Todo\'s',
-        items: [
-          {
-            id: 0, description: 'Create Vuejs app', done: true,
-          },
-          {
-            id: 1, description: 'Learn Vuejs', done: false,
-          },
-          {
-            id: 2, description: 'Learn Vuejs in depth', done: false,
-          },
-        ],
+        items: this.$store.state.todos,
         newTodoVal: '',
-        itemsLastKey: 2,
+        itemsLastKey: this.$store.state.todos.length,
       };
     },
     methods: {
+      edit(item) {
+        this.$router.push({
+          name: 'Edit',
+          params: {
+            id: item.id,
+          },
+        });
+      },
       remove(item) {
-        this.items.splice(this.items.indexOf(item), 1);
+        this.$store.commit('TODOS_REMOVE', item);
       },
       todoItemClick(item) {
         item.done = !item.done; // eslint-disable-line
       },
       newTodo(val) {
         if (val !== '') {
-          this.items.push({
+          const newTodo = {
             id: this.itemsLastKey + 1,
             description: val,
             done: false,
-          });
+          };
 
-          this.itemsLastKey += 1;
-
+          this.$store.commit('TODOS_ADD', newTodo);
           this.newTodoVal = '';
         }
       },
@@ -86,6 +87,12 @@
   a {
     color: #42b983;
   }
+  .edit {
+    position: absolute;
+    left: -80px;
+    width: 50px;
+    border-radius: 5px;
+  }
   .remove {
     position: absolute;
     left: -25px;
@@ -101,6 +108,7 @@
   }
   .done {
     text-decoration: line-through;
+    background-color: gray;
   }
   .mark {
     position: absolute;
