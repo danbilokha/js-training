@@ -5,6 +5,7 @@
   "author": "beloha <belohadk97@gmail.com>",
   "private": true,
   "scripts": {
+    "server": "json-server --watch ./server/db.json",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
     "start": "npm run dev",
     "lint": "eslint --ext .js,.vue src",

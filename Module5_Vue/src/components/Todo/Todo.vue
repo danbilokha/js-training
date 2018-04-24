@@ -12,7 +12,7 @@
     >
     <ul>
       <li
-          v-for='item in filter(items)' :key='item.id'
+          v-for='item in items' :key='item.id'
           class='todo' v-bind:class='item.done ? "done" : "inprogress"'
           v-on:click="todoItemClick(item)"
         >
@@ -33,6 +33,7 @@
   </div>
 </template>
 
+<script src='../../store/external.store.js'></script>
 <script>
   export default {
     name: 'Todo',
@@ -41,9 +42,12 @@
         msg: 'Welcome to Todo\'s',
         items: this.$store.state.todos,
         newTodoVal: '',
-        itemsLastKey: this.$store.state.todos.length,
         filteredVal: '',
       };
+    },
+    mounted() {
+      this.$getExternalTodos()
+        .then(data => this.$store.commit('INIT_TODOS', data));
     },
     methods: {
       edit(item) {
@@ -63,7 +67,7 @@
       newTodo(val) {
         if (val !== '') {
           const newTodo = {
-            id: this.itemsLastKey + 1,
+            id: this.$store.state.todos.length + 1,
             description: val,
             done: false,
           };
@@ -83,7 +87,6 @@
       },
     },
     // calculate: {
-      
     // },
   };
 </script>

@@ -33,6 +33,10 @@ class RandSymbolDataSource {
         this.onComplete();
     }
 
+    destroy() {
+        this.complete():
+    }
+
     _getRandomSymbol() {
         return Symbol(
             this._toRandomLetterCase(
@@ -68,11 +72,24 @@ class OfRandmSymbols {
     }
 }
 
+function observableOfRandomSymbol() {
+    return new OfRandmSymbols((observer) => {
+        const randSymbolDataSource = new RandSymbolDataSource();
+
+        randSymbolDataSource.onError = (err) => observer.error(err);
+        randSymbolDataSource.onData = (data) => observer.next(data);
+        randSymbolDataSource.onComplete = () => observer.complete();
+
+        return () => randSymbolDataSource.destroy();
+    });
+};
+
 // Could be improved
 const takeSymbolKey = (symbol) => symbol[symbol.indexOf('(') + 1];
 
 module.exports = {
     OfRandmSymbols,
     RandSymbolDataSource,
+    observableOfRandomSymbol,
     takeSymbolKey
 };

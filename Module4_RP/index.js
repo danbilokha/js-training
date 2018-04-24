@@ -4,19 +4,9 @@ const Observable = require('./Observable.js');
     To see 2 uncomment from here
 */
 const randomSymbol = require('./randomSymbol.js');
-const {OfRandmSymbols, RandSymbolDataSource} = randomSymbol;
+const {observableOfRandomSymbol} = randomSymbol;
 
-const observable = (
-    new OfRandmSymbols((observer) => {
-        const randSymbolDataSource = new RandSymbolDataSource();
-
-        randSymbolDataSource.onError = (err) => observer.error(err);
-        randSymbolDataSource.onData = (data) => observer.next(data);
-        randSymbolDataSource.onComplete = () => observer.complete();
-
-        return () => randSymbolDataSource.destroy();
-    })
-);
+const observable = observableOfRandomSymbol();
 
 // observable.subscribe(
 //     v => console.log(v),

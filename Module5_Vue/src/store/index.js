@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 Vue.use(Vuex);
 
+export const INIT_TODOS = 'INIT_TODOS';
 export const TODOS_ADD = 'TODOS_ADD';
 export const TODOS_REMOVE = 'TODOS_REMOVE';
 export const TODOS_EDIT = 'TODOS_EDIT';
@@ -28,10 +29,6 @@ const store = new Vuex.Store({
         [TODOS_REMOVE](state, payload) {
             const todos = Object.assign(state.todos);
             todos.splice(todos.indexOf(payload), 1);
-
-            state.todos = [
-                ...todos,
-            ];
         },
         [TODOS_EDIT](state, payload) {
             const todos = Object.assign(state.todos, payload);
@@ -40,6 +37,9 @@ const store = new Vuex.Store({
                 ...todos,
             ];
         },
+        [INIT_TODOS](state, payload) {
+            state.todos.splice(0, state.todos.length, ...payload);
+        }
     },
 });
 
