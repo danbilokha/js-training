@@ -1,0 +1,6 @@
+1. Observer 
+2. Subscriber
+3. Proxy 
+4. Mediator
+5. Singelton in HotObservable
+6. Iterator
