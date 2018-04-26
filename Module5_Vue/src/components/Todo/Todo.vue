@@ -12,24 +12,29 @@
     >
     <ul>
       <li
-          v-for='item in items' :key='item.id'
+          v-for='item in unarchived(items)' :key='item.id'
           class='todo' v-bind:class='item.done ? "done" : "inprogress"'
           v-on:click="todoItemClick(item)"
         >
         <button
           v-on:click.stop='edit(item)'
-          class='edit'
+          class='button edit'
         > Edit </button>
         <button
           v-on:click.stop='remove(item)'
-          class='remove'
+          class='button remove'
         > - </button>
+        <button
+          v-on:click.stop='archive(item)'
+          class='button archive'
+        > Archive </button>
         <span> {{ item.id }}. </span>
         <span> {{item.description}} </span>
         <span class='mark done-mark' v-if='item.done'> Done! </span>
         <span class='mark done-mark' v-if='!item.done'> In progress </span>
       </li>
     </ul>
+    <a v-on:click.stop="goTo('Archive')">Go to archive</a>
   </div>
 </template>
 
@@ -50,6 +55,20 @@
         .then(data => this.$store.commit('INIT_TODOS', data));
     },
     methods: {
+      goTo(where) {
+        this.$router.push({
+          name: where
+        })
+      },
+      archive(item) {
+        this.$store.commit('TODOS_ARCHIVE', item);
+        this.items = [
+          ...this.items
+        ]
+      },
+      unarchived(items) {
+        return items.filter(item => item.archive !== true)
+      },
       edit(item) {
         this.$router.push({
           name: 'Edit',
@@ -107,17 +126,20 @@
   a {
     color: #42b983;
   }
-  .edit {
+  .button {
     position: absolute;
-    left: -80px;
-    width: 50px;
     border-radius: 5px;
   }
+  .archive {
+    right: 5px;
+  }
+  .edit {
+    left: -80px;
+    width: 50px;
+  }
   .remove {
-    position: absolute;
     left: -25px;
     width: 20px;
-    border-radius: 5px;
   }
   .todo {
     margin: 5px 25%;
