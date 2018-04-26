@@ -47,10 +47,8 @@ const store = new Vuex.Store({
         const todo = todos[todos.indexOf(payload)];
         todo.archive = true;
         state.todos = [
-          ...todos
+          ...todos,
         ];
-        state.todos.splice()
-        console.log(state.todos);
       },
       [TODOS_UNARCHIVE](state, payload) {
         const todos = Object.assign(state.todos);
