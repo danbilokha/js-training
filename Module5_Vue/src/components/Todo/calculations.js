@@ -1,6 +1,1 @@
-const findTodo = (todos, id) => todos
-    .forEach((todo) => {
-        if (todo.id === id) {
-            return todo;
-        }
-    });
+const findTodo = (todos, id) => todos.filter(todo => todo.id === id);

@@ -40,6 +40,7 @@
 
 <script src='../../store/external.store.js'></script>
 <script>
+  import {INIT_TODOS, TODOS_ARCHIVE, TODOS_REMOVE, TODOS_ADD} from '../../store/index.js';
   export default {
     name: 'Todo',
     data() {
@@ -52,7 +53,7 @@
     },
     mounted() {
       this.$getExternalTodos()
-        .then(data => this.$store.commit('INIT_TODOS', data));
+        .then(payload => this.$store.commit(INIT_TODOS, payload));
     },
     methods: {
       goTo(where) {
@@ -60,8 +61,8 @@
           name: where
         })
       },
-      archive(item) {
-        this.$store.commit('TODOS_ARCHIVE', item);
+      archive(payload) {
+        this.$store.commit(TODOS_ARCHIVE, payload);
         this.items = [
           ...this.items
         ]
@@ -77,21 +78,21 @@
           },
         });
       },
-      remove(item) {
-        this.$store.commit('TODOS_REMOVE', item);
+      remove(payload) {
+        this.$store.commit(TODOS_REMOVE, payload);
       },
       todoItemClick(item) {
         item.done = !item.done; // eslint-disable-line
       },
       newTodo(val) {
         if (val !== '') {
-          const newTodo = {
+          const payload = {
             id: this.$store.state.todos.length + 1,
             description: val,
             done: false,
           };
 
-          this.$store.commit('TODOS_ADD', newTodo);
+          this.$store.commit(TODOS_ADD, payload);
           this.newTodoVal = '';
         }
       },
@@ -104,9 +105,7 @@
           return item.description.indexOf(this.filteredVal) !== -1;
         });
       },
-    },
-    // calculate: {
-    // },
+    }
   };
 </script>
 

@@ -9,4 +9,4 @@ function getExternalTodos() {
         .then(response => response.json());
 }
 
-export { http, getExternalTodos };
+export {getExternalTodos};
