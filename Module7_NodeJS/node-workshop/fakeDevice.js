@@ -14,10 +14,10 @@ app.get('/cm', (req, res) => {
   }
 
   res.sendStatus(200);
-})
+});
 
 app.listen(port, function(err){
   if(!err){
     console.log(`Fake device is listening on 127.0.0.1:${port}`)
   }
-})
+});

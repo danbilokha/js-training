@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class Form extends Component {
-    
-    constructor(){
+
+    constructor() {
         super();
         this.name = React.createRef();
         this.ip = React.createRef();
@@ -19,15 +19,17 @@ class Form extends Component {
     render() {
         return (
             <form className="form-inline ml-5" onSubmit={this.onSubmit}>
-                <div class="form-group mb-2">
-                    <label for="deviceName" className="sr-only">Device Name</label>
-                    <input type="text" ref={this.name} className="form-control" id="deviceName" placeholder="Device Name" />
+                <div className="form-group mb-2">
+                    <label htmlFor="deviceName" className="sr-only">Device Name</label>
+                    <input type="text" ref={this.name} className="form-control" id="deviceName"
+                           placeholder="Device Name"/>
                 </div>
-                <div class="form-group mx-sm-3 mb-2">
-                    <label for="deviceAddress" class="sr-only">IP Address</label>
-                    <input type="text" ref={this.ip} className="form-control" id="deviceAddress" placeholder="IP Address" />
+                <div className="form-group mx-sm-3 mb-2">
+                    <label htmlFor="deviceAddress" className="sr-only">IP Address</label>
+                    <input type="text" ref={this.ip} className="form-control" id="deviceAddress"
+                           placeholder="IP Address"/>
                 </div>
-                <button type="submit" class="btn btn-primary mb-2">Add Device</button>
+                <button type="submit" className="btn btn-primary mb-2">Add Device</button>
             </form>
         );
     }

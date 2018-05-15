@@ -1,30 +1,18 @@
 const express = require('express');
-const bodyParser = require('body-parser')
-const app = express();
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-
-const deviceRouter = require('./controllers/device'); 
+const deviceRouter = require('./controllers/device');
 
 mongoose.connect('mongodb://localhost/node-workshop');
 
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
 
-// let devices = [
-//   {
-//     id: 1,
-//     name: 'Device 1',
-//     ip: null
-//   },{
-//     id: 2,
-//     name: 'Device 2',
-//     ip: null
-//   }
-// ];
 app.use('/api/device', deviceRouter);
 app.get('/', (req, res) => {
-  res.json({
-    status: 'Not OK'
-  });
+    res.json({
+        status: 'Not OK'
+    });
 });
 
 

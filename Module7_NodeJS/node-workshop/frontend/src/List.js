@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 class List extends Component {
     // constructor(props) {
     //     super(props);
     // }
 
-    onUpdateStatus = async(id, isOn) => {
+    onUpdateStatus = async (id, isOn) => {
         await fetch(`/api/device/${id}`, {
             method: 'PUT',
             headers: {
@@ -15,11 +15,11 @@ class List extends Component {
             body: JSON.stringify({
                 isOn
             })
-        })
+        });
         this.props.updateDevice();
-    }
+    };
 
-    onDelete (index) {
+    onDelete(index) {
         // e.preventDefault();
         this.props.delDevice(index);
     }
@@ -28,10 +28,10 @@ class List extends Component {
         const device = this.props.devices[index];
         let offBtnClassName, onBtnClassName;
 
-        if(device.isOn){
+        if (device.isOn) {
             onBtnClassName = 'btn btn-outline-primary';
             offBtnClassName = 'btn btn-outline-secondary';
-        }else{
+        } else {
             onBtnClassName = 'btn btn-outline-secondary';
             offBtnClassName = 'btn btn-outline-primary';
         }
@@ -42,13 +42,19 @@ class List extends Component {
                 <td>{device.name}</td>
                 <td>{device.ip}</td>
                 <td>
-                    <div class="btn-toolbar float-right" role="toolbar">
+                    <div className="btn-toolbar float-right" role="toolbar">
                         <div className="btn-group mr-2" role="group">
-                            <button onClick={this.onUpdateStatus.bind(this, device.id, true)} type="button" className={onBtnClassName}>On</button>
-                            <button onClick={this.onUpdateStatus.bind(this, device.id, false)} type="button" className={offBtnClassName}>Off</button>
+                            <button onClick={this.onUpdateStatus.bind(this, device.id, true)} type="button"
+                                    className={onBtnClassName}>On
+                            </button>
+                            <button onClick={this.onUpdateStatus.bind(this, device.id, false)} type="button"
+                                    className={offBtnClassName}>Off
+                            </button>
                         </div>
-                        <div class="btn-group" role="group">
-                            <button type="button" className="btn btn-outline-warning" onClick={this.props.onDelete.bind(this, device.id)} >Delete</button>
+                        <div className="btn-group" role="group">
+                            <button type="button" className="btn btn-outline-warning"
+                                    onClick={this.props.onDelete.bind(this, device.id)}>Delete
+                            </button>
                         </div>
                     </div>
                 </td>
@@ -62,15 +68,15 @@ class List extends Component {
         return (
             <table className="table">
                 <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Device Name</th>
-                        <th scope="col">Device Address</th>
-                        <th scope="col">Actions</th>
-                    </tr>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Device Name</th>
+                    <th scope="col">Device Address</th>
+                    <th scope="col">Actions</th>
+                </tr>
                 </thead>
                 <tbody>
-                    { deviceList }
+                    {deviceList}
                 </tbody>
             </table>
         );

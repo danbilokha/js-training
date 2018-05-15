@@ -8,7 +8,7 @@ let nextId = 3;
 router.get('/', (req, res) => {
   Device.find((err, docs) => {
     if(err){
-      res.sendStatus(500)
+      res.sendStatus(500);
       return;
     }
     const devices = docs.map(doc => ({
@@ -16,7 +16,7 @@ router.get('/', (req, res) => {
       name: doc.name,
       ip: doc.ip,
       isOn: doc.isOn
-    }))
+    }));
 
     res.json(devices);
   })
@@ -40,7 +40,7 @@ router.put('/:id', async (req, res) => {
   //   isOn
   // }).exec();
   // res.sendStatus(200);
-})
+});
 
 router.post('/', async(req, res) => {
   const device = req.body;
@@ -49,7 +49,7 @@ router.post('/', async(req, res) => {
     name: device.name,
     ip: device.ip,
     isOn: false,
-  })
+  });
   res.sendStatus(200);
   // const {name, ip} = req.body;
   // devices.push({ name, ip, id: nextId++});
@@ -67,6 +67,6 @@ router.delete('/:id', async(req, res) => {
   } catch(e) {
     res.sendStatus(500);
   }
-})
+});
 
 module.exports = router;
