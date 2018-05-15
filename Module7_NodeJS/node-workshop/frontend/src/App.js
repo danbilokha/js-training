@@ -1,5 +1,4 @@
 import React, {PureComponent} from 'react';
-// import mongoose from 'mongoose';
 import List from './List';
 import Form from './Form';
 import logo from './logo.svg';

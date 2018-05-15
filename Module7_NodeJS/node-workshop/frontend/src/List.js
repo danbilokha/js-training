@@ -16,6 +16,7 @@ class List extends Component {
                 isOn
             })
         });
+
         this.props.updateDevice();
     };
 

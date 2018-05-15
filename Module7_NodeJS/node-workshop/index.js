@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const deviceRouter = require('./controllers/device');
 
 mongoose.connect('mongodb://localhost/node-workshop');
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Connection error unexpectable happened -->'));
+db.once('open', () => console.info('db successfully opened'));
 
 const app = express();
 app.use(bodyParser.json());
