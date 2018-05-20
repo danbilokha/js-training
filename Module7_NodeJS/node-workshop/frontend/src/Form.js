@@ -6,19 +6,29 @@ class Form extends PureComponent {
         super();
         this.name = React.createRef();
         this.ip = React.createRef();
+        this.isActitve = false;
+
+        this.changeActive = this.changeActive.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+    }
+
+    changeActive(e) {
+        this.isActitve = e.target.value;
     }
 
     onSubmit(e) {
         e.preventDefault();
-        const name = this.name.current.value;
-        const ip = this.ip.current.value;
-        this.props.addDevice(name, ip);
+
+        const name = this.name.current.value,
+            ip = this.ip.current.value,
+            activate = this.isActitve;
+
+        this.props.addDevice(name, ip, activate);
     }
 
     render() {
         return (
-            <form className="form-inline ml-5" onSubmit={this.onSubmit}>
+            <form className="form-inline" onSubmit={this.onSubmit}>
                 <div className="form-group mb-2">
                     <label htmlFor="deviceName" className="sr-only">Device Name</label>
                     <input type="text" ref={this.name} className="form-control" id="deviceName"
@@ -28,6 +38,20 @@ class Form extends PureComponent {
                     <label htmlFor="deviceAddress" className="sr-only">IP Address</label>
                     <input type="text" ref={this.ip} className="form-control" id="deviceAddress"
                            placeholder="IP Address"/>
+                </div>
+                <div className="form-group mx-sm-3 mb-2">
+                    <label className="sr-only">Active:</label>
+                    <input type="radio"
+                           name='active'
+                           onClick={this.changeActive}
+                           className="form-control" id="isActive"
+                           value='true' />
+                    <input type="radio"
+                           name='active'
+                           checked
+                           onClick={this.changeActive}
+                           className="form-control" id="isActive"
+                           value='false' />
                 </div>
                 <button type="submit" className="btn btn-primary mb-2">Add Device</button>
             </form>

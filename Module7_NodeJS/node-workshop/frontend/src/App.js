@@ -25,7 +25,7 @@ class App extends PureComponent {
         this.updateDeviceList();
     }
 
-    addDevice(name, ip) {
+    addDevice(name, ip, activate) {
         fetch('/api/device', {
             method: 'POST',
             headers: {
@@ -34,7 +34,8 @@ class App extends PureComponent {
             },
             body: JSON.stringify({
                 name,
-                ip
+                ip,
+                activate
             }),
         });
 
@@ -45,17 +46,17 @@ class App extends PureComponent {
         fetch(`api/device/${id}`, {
             method: 'DELETE',
             headers: {
-                Accept: 'application/json',
+                'Accept': 'application/json',
                 'Content-Type': 'application/json',
-            },
-            body: {}
+            }
         })
-            .then(res => res.json())
             .then(res => {
-                this.setState({...this.state, devices: res});
+                if(res.status === 200) {
+                    this.updateDeviceList();
+                } else {
+                    alert('Cannot del');
+                }
             });
-
-        this.updateDeviceList();
     }
 
     render() {
@@ -68,6 +69,7 @@ class App extends PureComponent {
                 <div className="App-intro">
                     <List devices={this.state.devices || []} onDelete={this.delDevice}
                           updateDevice={this.updateDeviceList}/>
+
                     <Form addDevice={this.addDevice}/>
                 </div>
             </div>

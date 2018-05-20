@@ -1,6 +1,8 @@
 const router = require('express').Router();
-const Device = require('../models/device');
+const Device = require('../models/Device');
 const fetchUrl = require('fetch').fetchUrl;
+const {logging} = require('./log');
+const Log = require('../models/Log');
 
 router.get('/', (req, res) => {
     Device.find((err, docs) => {
@@ -30,6 +32,8 @@ router.put('/:id', async (req, res) => {
         device.isOn = isOn;
         await device.save();
 
+        logging(device.name, 'device was updated.');
+
         res.sendStatus(200);
     })
 });
@@ -37,11 +41,13 @@ router.put('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
     const device = req.body;
 
-    await Device.create({
+    const createdDevice = await Device.create({
         name: device.name,
         ip: device.ip,
-        isOn: false,
+        isOn: device.activate,
     });
+
+    logging(createdDevice.name, 'device was created.');
 
     res.sendStatus(200);
 });
@@ -49,14 +55,33 @@ router.post('/', async (req, res) => {
 router.delete('/:id', async (req, res) => {
     const id = req.params.id;
 
+    const deviceToDelete = Device.findByIdAndRemove(id);
     try {
-        await Device.findByIdAndRemove(id).exec();
+        await deviceToDelete.exec();
+        logging(deviceToDelete.name, 'device was successfully deleted');
         res.sendStatus(200);
-        // devices = devices.filter((device) => device.id != id)
-        // res.json(devices);
     } catch (e) {
+        logging(deviceToDelete.name, 'device wasn\'t deleted.');
         res.sendStatus(500);
     }
+});
+
+router.get('/log/:id', (req, res) => {
+    Log.find((err, docs) => {
+        if (err) {
+            res.sendStatus(500);
+            return;
+        }
+
+        const logs = docs.map(doc => ({
+            device_name: doc.device_name,
+            action: doc.action,
+        }));
+
+        console.log(logs);
+
+        res.json(logs);
+    })
 });
 
 module.exports = router;
