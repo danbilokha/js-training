@@ -75,7 +75,6 @@ router.get('/log/:name', (req, res) => {
             return;
         }
 
-
         const logs = docs
             .filter(v => v.device_name === name)
             .map(({action}) => action);

@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const deviceRouter = require('./controllers/device');
+const groupRouter = require('./controllers/group');
 
 mongoose.connect('mongodb://localhost/nodeWorkshop');
 
@@ -13,6 +14,8 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use('/api/device', deviceRouter);
+app.use('/api/group', groupRouter);
+
 app.get('/', (req, res) => {
     res.json({
         status: 'Not OK'
