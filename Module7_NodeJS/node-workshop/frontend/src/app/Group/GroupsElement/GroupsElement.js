@@ -5,7 +5,7 @@ class GroupsElement extends PureComponent {
     resolveButton(group, device, index) {
         if (this.isThere(group.devices, device.name)) {
             return (
-                <button className='btn btn-danger'
+                <button className='btn btn-success'
                         onClick={this.changeDeviceGroup.bind(this, device.name, group)}
                         key={index}>
                     {device.name}
@@ -13,7 +13,7 @@ class GroupsElement extends PureComponent {
             )
         } else {
             return (
-                <button className='btn btn-success'
+                <button className='btn btn-danger'
                         onClick={this.changeDeviceGroup.bind(this, device.name, group)}
                         key={index}>
                     {device.name}
@@ -34,9 +34,7 @@ class GroupsElement extends PureComponent {
                 group
             }),
         })
-            .then(() => {
-
-            })
+            .then(this.props.update);
     }
 
     isThere(array, checker) {
@@ -47,6 +45,20 @@ class GroupsElement extends PureComponent {
         }
 
         return false;
+    }
+
+    changeAllDevicesInGroup(group, action) {
+        fetch(`/api/group/${action}/`, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                group
+            })
+        })
+            .then(this.props.update);
     }
 
     render() {
@@ -61,7 +73,8 @@ class GroupsElement extends PureComponent {
                             return (
                                 <div key={index}
                                      className='device_group__element'>
-                                    <p>Group name: {group.name}</p>
+                                    <h2> Group #{index} </h2>
+                                    <p>Name: {group.name}</p>
                                     <div className='device_group__element_devices'>
                                         <p> Group devices: </p>
                                         {
@@ -72,6 +85,17 @@ class GroupsElement extends PureComponent {
                                                 : <p>No devices available. add some first</p>
                                         }
                                     </div>
+                                    <hr/>
+                                    <button
+                                        className='btn btn-default'
+                                        onClick={this.changeAllDevicesInGroup.bind(this, group, 'disable')}>
+                                        DISABLE GROUP
+                                    </button>
+                                    <button
+                                        className='btn btn-primary'
+                                        onClick={this.changeAllDevicesInGroup.bind(this, group, 'enable')}>
+                                        ENABLE
+                                    </button>
                                     <hr/>
                                 </div>
                             )

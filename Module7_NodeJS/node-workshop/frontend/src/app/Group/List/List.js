@@ -44,7 +44,7 @@ class List extends PureComponent {
                     !!this.state.data
                     && !!this.state.data.group
                     && this.state.data.group.length !== 0
-                        ? <GroupsElement {...this.state.data} />
+                        ? <GroupsElement {...this.state.data} update={this.fetchList}/>
                         : <div> Loading ... </div>
                 }
             </div>
