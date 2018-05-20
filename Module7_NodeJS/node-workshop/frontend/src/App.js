@@ -18,8 +18,7 @@ class App extends PureComponent {
     updateDeviceList() {
         fetch('/api/device')
             .then(res => res.json())
-            .then(data => console.log('here2', data))
-            .then((res) => this.setState({devices: res}))
+            .then((devices) => this.setState({devices: devices}));
     }
 
     componentDidMount() {
@@ -38,6 +37,7 @@ class App extends PureComponent {
                 ip
             }),
         });
+
         this.updateDeviceList();
     }
 
@@ -54,6 +54,7 @@ class App extends PureComponent {
             .then(res => {
                 this.setState({...this.state, devices: res});
             });
+
         this.updateDeviceList();
     }
 
