@@ -66,19 +66,19 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-router.get('/log/:id', (req, res) => {
+router.get('/log/:name', (req, res) => {
+
+    const name = req.params.name;
     Log.find((err, docs) => {
         if (err) {
             res.sendStatus(500);
             return;
         }
 
-        const logs = docs.map(doc => ({
-            device_name: doc.device_name,
-            action: doc.action,
-        }));
 
-        console.log(logs);
+        const logs = docs
+            .filter(v => v.device_name === name)
+            .map(({action}) => action);
 
         res.json(logs);
     })
