@@ -1,15 +1,12 @@
 import React, {PureComponent} from 'react';
 import {API_DEVICE_ENDPOINT} from '../../api/constant';
+import {highFetch} from '../../api/api';
 
 class List extends PureComponent {
 
     onUpdateStatus = async (id, isOn) => {
-        await fetch(`${API_DEVICE_ENDPOINT}/${id}`, {
+        await highFetch(`${API_DEVICE_ENDPOINT}/${id}`, {
             method: 'PUT',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
             body: JSON.stringify({
                 isOn
             })
@@ -19,12 +16,8 @@ class List extends PureComponent {
     };
 
     onLogClicked(name) {
-        fetch(`${API_DEVICE_ENDPOINT}/log/${name}`, {
-            method: 'GET',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
+        highFetch(`${API_DEVICE_ENDPOINT}/log/${name}`, {
+            method: 'GET'
         })
             .then(res => res.json())
             .then(data => console.log(data))

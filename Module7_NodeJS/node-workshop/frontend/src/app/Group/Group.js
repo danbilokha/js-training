@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import './styles.css';
 import {List} from './List/List';
 import {API_GROUP_ENDPOINT} from '../../api/constant';
+import {highFetch} from '../../api/api';
 
 class Group extends PureComponent {
 
@@ -24,12 +25,8 @@ class Group extends PureComponent {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch(API_GROUP_ENDPOINT, {
+        highFetch(API_GROUP_ENDPOINT, {
             method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify({
                 name: this.state.groupName,
                 devices: []

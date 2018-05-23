@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import List from '../List/List';
 import Form from '../Add/Form';
 import '../App.css';
+import {highFetch} from '../../api/api';
 
 class Main extends PureComponent {
     constructor() {
@@ -25,12 +26,8 @@ class Main extends PureComponent {
     }
 
     addDevice(name, ip, activate) {
-        fetch('/api/device', {
+        highFetch('/api/device', {
             method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify({
                 name,
                 ip,
@@ -42,12 +39,8 @@ class Main extends PureComponent {
     }
 
     delDevice(id) {
-        fetch(`api/device/${id}`, {
+        highFetch(`api/device/${id}`, {
             method: 'DELETE',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            }
         })
             .then(res => {
                 if (res.status === 200) {

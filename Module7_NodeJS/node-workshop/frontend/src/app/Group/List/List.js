@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import {GroupsElement} from '../GroupsElement/GroupsElement';
 import {API_GROUP_ENDPOINT} from '../../../api/constant';
+import {highFetch} from '../../../api/api';
 
 class List extends PureComponent {
 
@@ -15,12 +16,8 @@ class List extends PureComponent {
     }
 
     fetchList() {
-        fetch(API_GROUP_ENDPOINT, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json'
-            },
+        highFetch(API_GROUP_ENDPOINT, {
+            method: 'GET'
         })
             .then(res => res.json())
             .then(data => {
