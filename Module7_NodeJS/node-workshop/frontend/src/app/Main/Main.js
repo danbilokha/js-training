@@ -3,6 +3,7 @@ import List from '../List/List';
 import Form from '../Add/Form';
 import '../App.css';
 import {highFetch} from '../../api/api';
+import {API_DEVICE_ENDPOINT} from '../../api/constant';
 
 class Main extends PureComponent {
     constructor() {
@@ -16,7 +17,7 @@ class Main extends PureComponent {
     }
 
     updateDeviceList() {
-        fetch('/api/device')
+        highFetch(API_DEVICE_ENDPOINT)
             .then(res => res.json())
             .then((devices) => this.setState({devices: devices}));
     }
@@ -26,7 +27,7 @@ class Main extends PureComponent {
     }
 
     addDevice(name, ip, activate) {
-        highFetch('/api/device', {
+        highFetch(API_DEVICE_ENDPOINT, {
             method: 'POST',
             body: JSON.stringify({
                 name,
@@ -39,7 +40,7 @@ class Main extends PureComponent {
     }
 
     delDevice(id) {
-        highFetch(`api/device/${id}`, {
+        highFetch(`${API_DEVICE_ENDPOINT}/${id}`, {
             method: 'DELETE',
         })
             .then(res => {
