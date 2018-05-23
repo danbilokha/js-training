@@ -1,9 +1,10 @@
 import React, {PureComponent} from 'react';
+import {API_DEVICE_ENDPOINT} from '../../api/constant';
 
 class List extends PureComponent {
 
     onUpdateStatus = async (id, isOn) => {
-        await fetch(`/api/device/${id}`, {
+        await fetch(`${API_DEVICE_ENDPOINT}/${id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
@@ -18,7 +19,7 @@ class List extends PureComponent {
     };
 
     onLogClicked(name) {
-        fetch(`/api/device/log/${name}`, {
+        fetch(`${API_DEVICE_ENDPOINT}/log/${name}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',

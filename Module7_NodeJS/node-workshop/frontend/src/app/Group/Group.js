@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import './styles.css';
 import {List} from './List/List';
+import {API_GROUP_ENDPOINT} from '../../api/constant';
 
 class Group extends PureComponent {
 
@@ -23,7 +24,7 @@ class Group extends PureComponent {
     onSubmit(e) {
         e.preventDefault();
 
-        fetch('/api/group', {
+        fetch(API_GROUP_ENDPOINT, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

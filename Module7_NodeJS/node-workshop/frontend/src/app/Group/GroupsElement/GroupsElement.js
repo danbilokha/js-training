@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {API_GROUP_ENDPOINT} from '../../../api/constant';
 
 class GroupsElement extends PureComponent {
 
@@ -23,7 +24,7 @@ class GroupsElement extends PureComponent {
     }
 
     changeDeviceGroup(deviceName, group) {
-        fetch(`/api/group/device/`, {
+        fetch(`${API_GROUP_ENDPOINT}/device/`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -48,7 +49,7 @@ class GroupsElement extends PureComponent {
     }
 
     changeAllDevicesInGroup(group, action) {
-        fetch(`/api/group/${action}/`, {
+        fetch(`${API_GROUP_ENDPOINT}/${action}/`, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

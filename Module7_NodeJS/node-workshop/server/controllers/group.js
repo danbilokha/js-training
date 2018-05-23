@@ -82,7 +82,4 @@ router.post('/', async (req, res) => {
     res.sendStatus(200);
 });
 
-router.delete('/:name', async (req, res) => {
-});
-
 module.exports = router;
