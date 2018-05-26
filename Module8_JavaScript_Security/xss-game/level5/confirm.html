@@ -9,7 +9,10 @@
   <body id="level5">
     <img src="https://xss-game.appspot.com/static/logos/level5.png" /><br><br>
     Thanks for signing up, you will be redirected soon...
+    here
+    {{next}}
     <script>
+      console.log(next);
       setTimeout(function() { window.location = '{{ next }}'; }, 5000);
     </script>
   </body>
