@@ -13,10 +13,16 @@
     <script>
         function chooseTab(num) {
             // Dynamically load the appropriate image.
+            if(isNaN(parseInt(num) % 0)) {
+                alert('don\'t do this');
+                return;
+            };
+
             var html = 'Image ' + parseInt(num) + '<br>';
             html += '<img src=\'https://xss-game.appspot.com/static/level3/cloud' + num + '.jpg\' />';
             $('#tabContent').html(html);
 
+            console.log(num);
             window.location.hash = num;
 
             // Select the current tab
@@ -36,13 +42,6 @@
         window.onload = function () {
             chooseTab(unescape(self.location.hash.substr(1)) || '1');
         }
-
-        // Extra code so that we can communicate with the parent page
-        window.addEventListener('message', function (event) {
-            if (event.source == parent) {
-                chooseTab(unescape(self.location.hash.substr(1)));
-            }
-        }, false);
     </script>
 
 </head>
