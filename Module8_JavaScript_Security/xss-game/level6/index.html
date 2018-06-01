@@ -26,9 +26,9 @@
             scriptEl.type = 'text/javascript';
 
             // This will totally prevent us from loading evil URLs!
-            if (url.match(/^https?:\/\//)) {
+            if (!~url.indexOf('http') || !~url.indexOf('https')) {
                 setInnerText(document.getElementById("log"),
-                    "Sorry, cannot load a URL containing \"http\".");
+                    "Sorry, it should be inner file.");
                 return;
             }
 
@@ -47,7 +47,6 @@
             }
 
             document.body.appendChild(scriptEl);
-debugger;
         }
 
         // Take the value after # and use it as the gadget filename.
