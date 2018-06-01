@@ -14,11 +14,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="level1.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="level1.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/xss-game/level1/level1.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="188">
               <caret line="24" column="33" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/xss-game/level3/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="20" column="57" lean-forward="true" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
               <folding />
             </state>
           </provider>
@@ -40,6 +50,7 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/xss-game/level1/foundedVulnerability.txt" />
+        <option value="$PROJECT_DIR$/xss-game/level3/index.html" />
       </list>
     </option>
   </component>
@@ -95,6 +106,12 @@
               <item name="xss-game" type="462c0819:PsiDirectoryNode" />
               <item name="level2" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="Module8_JavaScript_Security" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Module8_JavaScript_Security" type="462c0819:PsiDirectoryNode" />
+              <item name="xss-game" type="462c0819:PsiDirectoryNode" />
+              <item name="level3" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -140,12 +157,12 @@
       <workItem from="1526930302135" duration="186000" />
       <workItem from="1526966815336" duration="22000" />
       <workItem from="1527338382540" duration="179000" />
-      <workItem from="1527872884659" duration="960000" />
+      <workItem from="1527872884659" duration="1146000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1347000" />
+    <option name="totallyTimeSpent" value="1533000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1060" extended-state="6" />
@@ -242,6 +259,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="188">
           <caret line="24" column="33" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/xss-game/level3/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="20" column="57" lean-forward="true" selection-start-line="20" selection-start-column="57" selection-end-line="20" selection-end-column="57" />
           <folding />
         </state>
       </provider>
