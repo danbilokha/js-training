@@ -13,7 +13,7 @@
     <script>
         function chooseTab(num) {
             // Dynamically load the appropriate image.
-            if(isNaN(parseInt(num))) {
+            if(isNaN(Math.floor(num))) {
                 alert('don\'t do this');
                 return;
             };
