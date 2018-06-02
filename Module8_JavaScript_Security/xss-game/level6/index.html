@@ -1,71 +1,68 @@
 <!doctype html>
 <html>
-  <head>
+<head>
     <!-- Internal game scripts/styles, mostly boring stuff -->
     <script src="https://xss-game.appspot.com/static/game-frame.js"></script>
-    <link rel="stylesheet" href="https://xss-game.appspot.com/static/game-frame-styles.css" />
- 
+    <link rel="stylesheet" href="https://xss-game.appspot.com/static/game-frame-styles.css"/>
 
-  </head>
- 
-  <body id="level6">
-    <img src="https://xss-game.appspot.com/static/logos/level6.png">
-    <img id="cube" src="https://xss-game.appspot.com/static/level6_cube.png">
-    <div id="log">Loading gadget...</div>
-    <script>
-        function setInnerText(element, value) {
-            if (element.innerText) {
-                element.innerText = value;
-            } else {
-                element.textContent = value;
-            }
+
+</head>
+
+<body id="level6">
+<img src="https://xss-game.appspot.com/static/logos/level6.png">
+<img id="cube" src="https://xss-game.appspot.com/static/level6_cube.png">
+<div id="log">Loading gadget...</div>
+<script>
+    const URL_BASE = 'static/';
+
+    function setInnerText(element, value) {
+        if (element.innerText) {
+            element.innerText = value;
+        } else {
+            element.textContent = value;
+        }
+    }
+
+    function includeGadget(url) {
+        var scriptEl = document.createElement('script');
+        scriptEl.type = 'text/javascript';
+
+        console.log(url.splice(0, URL_BASE.length), url.splice(0, URL_BASE.length) === URL_BASE);
+
+        // This will totally prevent us from loading evil URLs!
+        if (url.slice(0, URL_BASE.length) !== URL_BASE) {
+            setInnerText(document.getElementById('log'),
+                'Sorry, it should be inner file.');
+            return;
         }
 
-        function includeGadget(url) {
-            var scriptEl = document.createElement('script');
-            scriptEl.type = 'text/javascript';
+        // Load this awesome gadget
+        scriptEl.src = url;
 
-            // This will totally prevent us from loading evil URLs!
-            if (!~url.indexOf('http') || !~url.indexOf('https')) {
-                setInnerText(document.getElementById("log"),
-                    "Sorry, it should be inner file.");
-                return;
-            }
+        // Show log messages
+        scriptEl.onload = function (e) {
+            console.log(e);
+            setInnerText(document.getElementById('log'),
+                'Loaded gadget from ' + url);
+        };
+        scriptEl.onerror = function () {
+            setInnerText(document.getElementById('log'),
+                'Couldn\'t load gadget from ' + url);
+        };
 
-            // Load this awesome gadget
-            scriptEl.src = url;
+        document.body.appendChild(scriptEl);
+    }
 
-            // Show log messages
-            scriptEl.onload = function(e) {
-                console.log(e);
-                setInnerText(document.getElementById("log"),
-                    "Loaded gadget from " + url);
-            }
-            scriptEl.onerror = function() {
-                setInnerText(document.getElementById("log"),
-                    "Couldn't load gadget from " + url);
-            }
+    // Take the value after # and use it as the gadget filename.
+    function getGadgetName() {
 
-            document.body.appendChild(scriptEl);
-        }
+        console.log(window.location.hash.substr(1));
+        return window.location.hash.substr(1) || '/gadget.js';
+    }
 
-        // Take the value after # and use it as the gadget filename.
-        function getGadgetName() {
+    includeGadget(getGadgetName());
 
-            console.log(window.location.hash.substr(1));
-            return window.location.hash.substr(1) || "/gadget.js";
-        }
-
-        includeGadget(getGadgetName());
-
-        // Extra code so that we can communicate with the parent page
-        // window.addEventListener("message", function(event){
-        //     if (event.source == parent) {
-        //         includeGadget(getGadgetName());
-        //     }
-        // }, false);
-
-    </script>
-  <script src="./gadget.js"></script>
-  </body>
+</script>
+<script src="./gadget.js"></script>
+</body>
 </html>
