@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Internal game scripts/styles, mostly boring stuff -->
+    <script src="https://xss-game.appspot.com/static/game-frame.js"></script>
+    <link rel="stylesheet" href="https://xss-game.appspot.com/static/game-frame-styles.css"/>
+
+
+</head>
+
+<body id="level6">
+<img src="https://xss-game.appspot.com/static/logos/level6.png">
+<img id="cube" src="https://xss-game.appspot.com/static/level6_cube.png">
+<div id="log">Loading gadget...</div>
+<script>
+    const URL_BASE = 'static/';
+
+    function setInnerText(element, value) {
+        if (element.innerText) {
+            element.innerText = value;
+        } else {
+            element.textContent = value;
+        }
+    }
+
+    function includeGadget(url) {
+        var scriptEl = document.createElement('script');
+        scriptEl.type = 'text/javascript';
+
+        console.log(url.splice(0, URL_BASE.length), url.splice(0, URL_BASE.length) === URL_BASE);
+
+        // This will totally prevent us from loading evil URLs!
+        if (url.slice(0, URL_BASE.length) !== URL_BASE) {
+            setInnerText(document.getElementById('log'),
+                'Sorry, it should be inner file.');
+            return;
+        }
+
+        // Load this awesome gadget
+        scriptEl.src = url;
+
+        // Show log messages
+        scriptEl.onload = function (e) {
+            console.log(e);
+            setInnerText(document.getElementById('log'),
+                'Loaded gadget from ' + url);
+        };
+        scriptEl.onerror = function () {
+            setInnerText(document.getElementById('log'),
+                'Couldn\'t load gadget from ' + url);
+        };
+
+        document.body.appendChild(scriptEl);
+    }
+
+    // Take the value after # and use it as the gadget filename.
+    function getGadgetName() {
+
+        console.log(window.location.hash.substr(1));
+        return window.location.hash.substr(1) || '/gadget.js';
+    }
+
+    includeGadget(getGadgetName());
+
+</script>
+<script src="./gadget.js"></script>
+</body>
+</html>
