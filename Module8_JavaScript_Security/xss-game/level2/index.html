@@ -45,12 +45,11 @@
 
             document.getElementById('post-form').onsubmit = function () {
                 var message = document.getElementById('post-content').value;
-                console.log(message.indexOf('/>'), message);
                 if (
-                    message.indexOf('</') !== -1
-                    || message.indexOf('javascript:')
-                    || message.indexOf('src')
-                    || message.indexOf('onerror')
+                    !!~message.indexOf('</')
+                    || !!~message.indexOf('javascript:')
+                    || !!~message.indexOf('src')
+                    || !!~message.indexOf('onerror')
                 ) {
                     alert('you cannot inject xss');
                     return false;
